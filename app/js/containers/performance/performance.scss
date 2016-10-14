@@ -77,13 +77,19 @@
     }
 
     .hm-performance-list {
-        .item-linked > a {
-            padding-left: 0.3rem;
-            color: #888888;
+        .item {
+            border-color: #F0F0F0;
         }
 
+        .item-linked > a {
+            padding-left: .6rem;
+            color: #606060;
+        }
+
+
         .item-before {
-            margin-right: .625em;
+            color: #EE3040;
+            margin-right: 1.3em;
         }
     }
 }

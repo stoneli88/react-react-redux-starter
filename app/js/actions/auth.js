@@ -52,7 +52,7 @@ export function login(account, password) {
     }),
   };
 
-  return callApi(`${RESTFUL_SERVER}/guider/login.json`,
+  return callApi(`${RESTFUL_SERVER}/crm/login.json`,
     config,
     loginRequest(account),
     loginSuccess,
@@ -96,7 +96,7 @@ export function logout() {
     }),
   };
 
-  return callApi(`${RESTFUL_SERVER}/guider/logout.json`,
+  return callApi(`${RESTFUL_SERVER}/crm/logout.json`,
     config,
     logoutRequest,
     logoutSuccess,
