@@ -34,10 +34,15 @@ function memberSaleFailure(error) {
 }
 
 // 请求获得当日的任务
-export function getMemberSale() {
+export function getMonthSale() {
   const profile = loadIdToken();
   const userId = profile.userId;
-  const token = `${userId},${profile.storeCode},${profile.workNum},${profile.storeOutletId}`;
+  const token =
+    `${userId},
+    ${profile.workNum},
+    ${profile.position},
+    ${profile.storeCode},
+    ${profile.storeOutletId}`;
   const config = {
     method: 'post',
     mode: 'cors',

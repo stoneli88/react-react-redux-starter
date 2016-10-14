@@ -1,8 +1,6 @@
-# Amaze UI Touch Starter Kit
+# HeMiao Shopping Guider System.
 
-[Amaze UI Touch](https://github.com/amazeui/amazeui-touch) 快速上手套件，基于 React、Amaze UI Touch、React Router 及 Webpack 开发 SPA。
-
-**套件中目前只包含客户部代码，亦未包含 Flux、Redux 等框架**。
+禾苗商城导购系统，基于 React、Redux、Amaze UI Touch、React Router 及 Webpack 开发 SPA。
 
 ## 目录结构
 
@@ -11,10 +9,10 @@
 ```
 .app
 ├── humans.txt
-├── i              // 图片
-├── index.html     // 入口 HTML
-├── js             // JS
-├── style           // 样式文件（编译任务中设置的是 Sass，可以自行改用其他）
+├── imgs              // 图片
+├── index.html        // 入口 HTML
+├── js                // JS
+├── style             // 样式文件（编译任务中设置的是Sass，可以自行改用其他）
 ├── manifest.json
 ├── manifest.webapp
 └── robots.txt

@@ -36,7 +36,8 @@ function currentDayTaskFailure(error) {
 export function getCurrentDayTask() {
   const profile = loadIdToken();
   const userId = profile.userId;
-  const token = `${userId},${profile.storeCode},${profile.workNum},${profile.storeOutletId}`;
+  const token = `
+    ${userId},${profile.workNum},${profile.position},${profile.storeCode},${profile.storeOutletId}`;
   const config = {
     method: 'post',
     mode: 'cors',
