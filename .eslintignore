@@ -1,0 +1,4 @@
+./app/libs/**/*.js
+webpack.config.js
+server.js
+node_modules

@@ -1,0 +1,89 @@
+.hm-performance {
+    .tabs-inset {
+        margin: 0;
+    }
+
+    .hm-performance-header {
+        width: 100%;
+        height: 9.2rem;
+        padding: 2rem;
+        background-image: url(../../../imgs/home/bg-no-text.jpg);
+        background-size: 100% 100%;
+        background-color: #EE3646;
+        background-repeat: no-repeat;
+
+        .text {
+            display: block;
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+        }
+    }
+
+    .hm-performance-menu {
+        padding: 1em 1.8em 1em 1.8em;
+
+        .col-3 {
+            height: 6rem;
+            text-align: center;
+            margin: 0 .5rem;
+            flex: 1 0 30%;
+            border-radius: 5px;
+        }
+
+        .col-3:first-child {
+            margin-left: 0;
+            background-color: #FF6978;
+        }
+
+        .col-3:last-child {
+            margin-right: 0;
+            background-color: #FF9B9D;
+        }
+
+        .icon-hemiao {
+            display: block;
+            padding-top: .3125em;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .text {
+            display: block;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .text.small {
+            font-size: .625rem;
+        }
+
+        .group {
+            margin: .31rem 0;
+            margin-top: .6em;
+            background: white;
+
+            .group-body {
+                padding: 0.9375rem 0.9375rem 0.9375rem 0.9375rem;
+            }
+
+            .text {
+                display: inherit;
+                font-size: 16px;
+                color: #656565;
+                text-align: center;
+            }
+        }
+    }
+
+    .hm-performance-list {
+        .item-linked > a {
+            padding-left: 0.3rem;
+            color: #888888;
+        }
+
+        .item-before {
+            margin-right: .625em;
+        }
+    }
+}

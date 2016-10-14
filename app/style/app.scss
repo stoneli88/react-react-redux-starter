@@ -1,0 +1,110 @@
+// 覆盖字体路径变量，以防止编译出错
+// 1.0.0-rc.1 有点小问题，需要手动删掉
+//    node_modules/amazeui-touch/scss/amazeui.touch.scss 中的 `$ratchicons-path: 'fonts/';` 这一行
+// @see https://github.com/jtangelder/sass-loader#problems-with-url
+$ratchicons-path: "../../node_modules/amazeui-touch/fonts/";
+
+@import "~amazeui-touch/scss/amazeui.touch.scss";
+
+/* Container `fade` 动画示例 */
+.view-transition-fade-enter {
+  opacity: 0.01;
+}
+
+.view-transition-fade-enter.view-transition-fade-enter-active {
+  opacity: 1;
+  transition: opacity 450ms ease-in;
+}
+
+.view-transition-fade-leave {
+  opacity: 1;
+}
+
+.view-transition-fade-leave.view-transition-fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+// 覆盖默认的背景色
+body .view {
+  background-color: white;
+}
+
+body .btn-warning:hover,
+body .btn-warning:active,
+body .btn-warning.active {
+  background: white;
+}
+
+// 工具函数
+.hide {
+  display: none !important;
+}
+
+// 图标字体
+.icon-hemiao {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1;
+  font-size: 1.625em;
+
+  ~.tabbar-label {
+    font-size: .8em;
+  }
+}
+
+// .tabbar
+body .tabbar {
+  background-color: white;
+  height: 4.0725rem;
+}
+
+body .tabbar > .active, body .tabbar > .active a {
+  color: #EE3646;
+}
+
+// 图标字体
+@font-face {font-family: "iconfont";
+  src: 
+    url('../fonts/iconfont.woff') format('woff'), /* chrome, firefox */
+    url('../fonts/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-dankexiaofei:before { content: "\e607"; }
+.icon-dingdan:before { content: "\e617"; }
+.icon-lianjie:before { content: "\e616"; }
+.icon-shangpin:before { content: "\e615"; }
+.icon-mima:before { content: "\e614"; }
+.icon-yonghuming:before { content: "\e613"; }
+.icon-erweima:before { content: "\e612"; }
+.icon-kehuguanli:before { content: "\e611"; }
+.icon-shouye:before { content: "\e610"; }
+.icon-jixiaopinggu:before { content: "\e60f"; }
+.icon-dongtai:before { content: "\e60e"; }
+.icon-jine:before { content: "\e60d"; }
+.icon-xinzeng:before { content: "\e60b"; }
+.icon-kedanjia:before { content: "\e60c"; }
+.icon-shuimian:before { content: "\e60a"; }
+.icon-mendian:before { content: "\e609"; }
+.icon-chengjiao:before { content: "\e608"; }
+.icon-zhanbi2:before { content: "\e606"; }
+.icon-liulan:before { content: "\e604"; }
+.icon-zhanbi:before { content: "\e605"; }
+.icon-liushi:before { content: "\e603"; }
+.icon-kehutezheng:before { content: "\e602"; }
+.icon-kehuliebiao:before { content: "\e601"; }
+.icon-shaixuan:before { content: "\e600"; }
+
+// 工具类
+.noPadding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
