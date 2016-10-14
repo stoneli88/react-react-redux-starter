@@ -5,6 +5,51 @@ require('es6-promise').polyfill();
 
 export const RESTFUL_SERVER = 'http://shop.weihaojiao.com';
 
+// 后端的返回的出错代码映射
+export const RESTFUL_ERROR_MESSAGE = {
+  '-100': '操作超时，请重新登录',
+  '-200': '用户信息有误，请联系管理员',
+  '-999': '未知错误',
+  '-1': {
+    login: '登录人职位不允许登录导购平台(不是导购、督导、店长)',
+    current_day_task: '未获取到任何今日任务信息',
+    undo_task: '未获取到任何未完成任务信息',
+    store_note: '未获取到任何门店通知信息',
+    month_sale: '未设置本月销售完成进度',
+  },
+};
+
+// 根据code返回错误上下文
+function errorMsg(errCode, module) {
+  switch (errCode) {
+    case -100:
+      return RESTFUL_ERROR_MESSAGE['-100'];
+    case -200:
+      return RESTFUL_ERROR_MESSAGE['-200'];
+    case -999:
+      return RESTFUL_ERROR_MESSAGE['-999'];
+    case -1:
+      switch (module) {
+        case 'login':
+          return RESTFUL_ERROR_MESSAGE['-1'].module;
+        case 'current_day_task':
+          return RESTFUL_ERROR_MESSAGE['-1'].module;
+        case 'undo_task':
+          return RESTFUL_ERROR_MESSAGE['-1'].module;
+        case 'store_note':
+          return RESTFUL_ERROR_MESSAGE['-1'].module;
+        case 'month_sale':
+          return RESTFUL_ERROR_MESSAGE['-1'].module;
+        default:
+          break;
+      }
+      break;
+    default:
+      break;
+  }
+  return RESTFUL_ERROR_MESSAGE['-999'];
+}
+
 // 检查响应返回的状态.
 export function checkStatus(response) {
   if (!response.ok) { // (response.status < 200 || response.status > 300)
@@ -43,7 +88,11 @@ export function callApi(url, config, request, onRequestSuccess, onRequestFailure
         if (json.code !== 0) {
           const error = {};
           error.status = json.code;
-          error.message = `请求失败, 返回code为${json.code}`;
+          if (json.code === 1) {
+            const module = url.substr(url.lastIndexOf('/') + 1).replace('.json', '');
+            error.message = errorMsg(json.code, module);
+          }
+          error.message = errorMsg(json.code);
           dispatch(onRequestFailure(error));
         } else {
           dispatch(onRequestSuccess(json));
@@ -61,7 +110,18 @@ export function callApi(url, config, request, onRequestSuccess, onRequestFailure
               const json = JSON.parse(text);
               error.message = json.message;
             } catch (ex) {
-              error.message = text;
+              switch (error.status) {
+                case 404:
+                case 415:
+                case 403:
+                  error.message = `请求后端数据出现错误, 代码为${error.status}`;
+                  break;
+                case 500:
+                  error.message = '后端服务出现错误, 代码为500';
+                  break;
+                default:
+                  error.message = `未知后台错误, 代码为: ${error.status}`;
+              }
             }
             dispatch(onRequestFailure(error));
           });

@@ -51,8 +51,8 @@ export function getStoreNote() {
 
   return callApi(`${RESTFUL_SERVER}/guider/store_note.json?token=${token}`,
     config,
-    memberSaleRequest(userId),
-    memberSaleSuccess,
-    memberSaleFailure
+    storeNoteRequest(token),
+    storeNoteSuccess,
+    storeNoteFailure
   );
 }

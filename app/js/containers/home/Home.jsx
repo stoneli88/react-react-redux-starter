@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {
   Container,
   Group,
-  TabBar,
   Grid,
   Col,
   Button,
@@ -15,9 +14,10 @@ import {
 import ReactEcharts from 'echarts-for-react';
 
 // actions
-import {
-  getCurrentDayTask,
-} from '../../actions/users/currentDayTask';
+import { getCurrentDayTask } from '../../actions/users/currentDayTask';
+import { getMonthSale } from '../../actions/users/monthSale';
+import { getStoreNote } from '../../actions/users/storeNote';
+import { getUndoDayTask } from '../../actions/users/undoDayTask';
 
 // 文件资源
 import '../../../imgs/home/bg-no-text.jpg';
@@ -27,15 +27,28 @@ import './home.scss';
 
 /* eslint react/prefer-stateless-function: [0] */
 class Home extends React.Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getCurrentDayTask());
+  constructor(props) {
+    super(props);
+    this.state = {
+      isErrorHappend: false,
+    };
     this.onChartClick = this.onChartClick.bind(this);
   }
 
-  onChartClick(param, echart) {
-    console.log(param);
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(getCurrentDayTask());
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.error) {
+      this.setState({
+        isErrorHappend: true,
+      });
+    }
+  }
+
+  onChartClick(param, echart) {}
 
   getOption() {
     const options = {
@@ -114,12 +127,22 @@ class Home extends React.Component {
   }
 
   render() {
+    const { user } = this.props;
     const onEvents = {
       click: this.onChartClick,
     };
     return (
       <View>
         <Container scrollable className="ks-grid">
+          <Notification
+            title="登陆出错了!"
+            amStyle="alert"
+            visible={this.state.isErrorHappend}
+            animated
+            onDismiss={this.closeNotification}
+          >
+            {user.error && user.error.message}.
+          </Notification>
           <header className="hm-home-header">
             <Grid>
               <Col cols={4}>
@@ -224,17 +247,22 @@ class Home extends React.Component {
 
 Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { currentDayTaskSize } = state;
-  if (!currentDayTaskSize) {
+  const { user } = state;
+  if (!user) {
+    // todo: 需要在此处应用应用程序缓存, 在后台数据无法获取的时候, 我们使用保存在应用缓存的数据.
     return {
       currentDayTaskSize: 0,
+      currentDayTaskList: [],
+      undoTaskSize: 0,
+      undoTaskList: [],
     };
   }
   return {
-    currentDayTaskSize,
+    user,
   };
 }
 

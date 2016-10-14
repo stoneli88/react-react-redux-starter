@@ -36,8 +36,8 @@ function currentDayTaskFailure(error) {
 export function getCurrentDayTask() {
   const profile = loadIdToken();
   const userId = profile.userId;
-  const token = `
-    ${userId},${profile.workNum},${profile.position},${profile.storeCode},${profile.storeOutletId}`;
+  /* eslint max-len: [0] */
+  const token = `${userId},${profile.workNum},${profile.position},${profile.storeCode},${profile.storeOutletId}`;
   const config = {
     method: 'post',
     mode: 'cors',
@@ -48,7 +48,7 @@ export function getCurrentDayTask() {
     body: {},
   };
 
-  return callApi(`${RESTFUL_SERVER}/guider/current_day_task.json?token=${token}`,
+  return callApi(`${RESTFUL_SERVER}/crm/current_day_task.json?token=${token}`,
     config,
     currentDayTaskRequest(userId),
     currentDayTaskSuccess,

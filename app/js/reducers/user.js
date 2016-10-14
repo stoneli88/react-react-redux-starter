@@ -2,7 +2,7 @@ import {
   CURRENT_DAY_TASK_REQUEST,
   CURRENT_DAY_TASK_SUCCESS,
   CURRENT_DAY_TASK_FAILURE,
-} from '../actions/user';
+} from '../actions/users/currentDayTask';
 
 // 初始化用户上下文.
 const initialState = {
@@ -10,6 +10,7 @@ const initialState = {
   currentDayTaskList: [],
   undoTaskSize: 0,
   undoTaskList: [],
+  error: null,
 };
 
 // 初始化用户登陆验证上下文的状态.
@@ -26,7 +27,7 @@ export default function User(state = initializeState(), action = {}) {
     case CURRENT_DAY_TASK_FAILURE:
       return {
         ...state,
-        currentTaskError: action.error,
+        error: action.error,
       };
     default:
       return state;

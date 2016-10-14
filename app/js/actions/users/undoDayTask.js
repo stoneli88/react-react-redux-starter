@@ -37,8 +37,8 @@ function undoDayTaskFailure(error) {
 export function getUndoDayTask() {
   const profile = loadIdToken();
   const userId = profile.userId;
-  const token = `
-    ${userId},${profile.workNum},${profile.position},${profile.storeCode},${profile.storeOutletId}`;
+  /* eslint max-len: [0] */
+  const token = `${userId},${profile.workNum},${profile.position},${profile.storeCode},${profile.storeOutletId}`;
   const config = {
     method: 'post',
     mode: 'cors',
